@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java.dao.BesFfmOrderHistDao">
+
+    <resultMap type="com.java.entity.BesFfmOrderHist" id="BesFfmOrderHistMap">
+        <result property="fulfillmentId" column="FULFILLMENT_ID" jdbcType="INTEGER"/>
+        <result property="orderId" column="ORDER_ID" jdbcType="INTEGER"/>
+        <result property="orderType" column="ORDER_TYPE" jdbcType="VARCHAR"/>
+        <result property="status" column="STATUS" jdbcType="VARCHAR"/>
+        <result property="identityId" column="IDENTITY_ID" jdbcType="VARCHAR"/>
+        <result property="lastUpdatedDate" column="LAST_UPDATED_DATE" jdbcType="TIMESTAMP"/>
+        <result property="lastUpdatedBy" column="LAST_UPDATED_BY" jdbcType="VARCHAR"/>
+        <result property="expStartDate" column="EXP_START_DATE" jdbcType="TIMESTAMP"/>
+        <result property="expEndDate" column="EXP_END_DATE" jdbcType="TIMESTAMP"/>
+        <result property="appointmentId" column="APPOINTMENT_ID" jdbcType="VARCHAR"/>
+        <result property="preWiringStartDate" column="PRE_WIRING_START_DATE" jdbcType="TIMESTAMP"/>
+        <result property="preWiringEndDate" column="PRE_WIRING_END_DATE" jdbcType="TIMESTAMP"/>
+        <result property="preSiteCheckStartDate" column="PRE_SITE_CHECK_START_DATE" jdbcType="TIMESTAMP"/>
+        <result property="preSiteCheckEndDate" column="PRE_SITE_CHECK_END_DATE" jdbcType="TIMESTAMP"/>
+        <result property="groupId" column="GROUP_ID" jdbcType="VARCHAR"/>
+        <result property="familyId" column="FAMILY_ID" jdbcType="VARCHAR"/>
+        <result property="newGroupId" column="NEW_GROUP_ID" jdbcType="VARCHAR"/>
+        <result property="newIdentityId" column="NEW_IDENTITY_ID" jdbcType="VARCHAR"/>
+        <result property="createdDate" column="CREATED_DATE" jdbcType="TIMESTAMP"/>
+        <result property="logId" column="LOG_ID" jdbcType="INTEGER"/>
+        <result property="logDate" column="LOG_DATE" jdbcType="TIMESTAMP"/>
+        <result property="newFamilyId" column="NEW_FAMILY_ID" jdbcType="VARCHAR"/>
+        <result property="ddiLevel" column="DDI_LEVEL" jdbcType="VARCHAR"/>
+        <result property="custId" column="CUST_ID" jdbcType="INTEGER"/>
+        <result property="portFlag" column="PORT_FLAG" jdbcType="VARCHAR"/>
+        <result property="nn" column="NN" jdbcType="VARCHAR"/>
+        <result property="rno" column="RNO" jdbcType="VARCHAR"/>
+        <result property="dno" column="DNO" jdbcType="VARCHAR"/>
+        <result property="cni" column="CNI" jdbcType="VARCHAR"/>
+        <result property="cniDate" column="CNI_DATE" jdbcType="TIMESTAMP"/>
+        <result property="chgOverStartTime" column="CHG_OVER_START_TIME" jdbcType="TIMESTAMP"/>
+        <result property="chgOverEndTime" column="CHG_OVER_END_TIME" jdbcType="TIMESTAMP"/>
+        <result property="accountNumber" column="ACCOUNT_NUMBER" jdbcType="VARCHAR"/>
+        <result property="refSerialNo" column="REF_SERIAL_NO" jdbcType="VARCHAR"/>
+        <result property="bmo" column="BMO" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BesFfmOrderHistMap">
+        select
+          FULFILLMENT_ID, ORDER_ID, ORDER_TYPE, STATUS, IDENTITY_ID, LAST_UPDATED_DATE, LAST_UPDATED_BY, EXP_START_DATE, EXP_END_DATE, APPOINTMENT_ID, PRE_WIRING_START_DATE, PRE_WIRING_END_DATE, PRE_SITE_CHECK_START_DATE, PRE_SITE_CHECK_END_DATE, GROUP_ID, FAMILY_ID, NEW_GROUP_ID, NEW_IDENTITY_ID, CREATED_DATE, LOG_ID, LOG_DATE, NEW_FAMILY_ID, DDI_LEVEL, CUST_ID, PORT_FLAG, NN, RNO, DNO, CNI, CNI_DATE, CHG_OVER_START_TIME, CHG_OVER_END_TIME, ACCOUNT_NUMBER, REF_SERIAL_NO, BMO
+        from BES_FFM_ORDER_HIST
+        where FULFILLMENT_ID = #{fulfillmentId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BesFfmOrderHistMap">
+        select
+          FULFILLMENT_ID, ORDER_ID, ORDER_TYPE, STATUS, IDENTITY_ID, LAST_UPDATED_DATE, LAST_UPDATED_BY, EXP_START_DATE, EXP_END_DATE, APPOINTMENT_ID, PRE_WIRING_START_DATE, PRE_WIRING_END_DATE, PRE_SITE_CHECK_START_DATE, PRE_SITE_CHECK_END_DATE, GROUP_ID, FAMILY_ID, NEW_GROUP_ID, NEW_IDENTITY_ID, CREATED_DATE, LOG_ID, LOG_DATE, NEW_FAMILY_ID, DDI_LEVEL, CUST_ID, PORT_FLAG, NN, RNO, DNO, CNI, CNI_DATE, CHG_OVER_START_TIME, CHG_OVER_END_TIME, ACCOUNT_NUMBER, REF_SERIAL_NO, BMO
+        from BES_FFM_ORDER_HIST
+        <where>
+            <if test="fulfillmentId != null">
+                and FULFILLMENT_ID = #{fulfillmentId}
+            </if>
+            <if test="orderId != null">
+                and ORDER_ID = #{orderId}
+            </if>
+            <if test="orderType != null and orderType != ''">
+                and ORDER_TYPE = #{orderType}
+            </if>
+            <if test="status != null and status != ''">
+                and STATUS = #{status}
+            </if>
+            <if test="identityId != null and identityId != ''">
+                and IDENTITY_ID = #{identityId}
+            </if>
+            <if test="lastUpdatedDate != null">
+                and LAST_UPDATED_DATE = #{lastUpdatedDate}
+            </if>
+            <if test="lastUpdatedBy != null and lastUpdatedBy != ''">
+                and LAST_UPDATED_BY = #{lastUpdatedBy}
+            </if>
+            <if test="expStartDate != null">
+                and EXP_START_DATE = #{expStartDate}
+            </if>
+            <if test="expEndDate != null">
+                and EXP_END_DATE = #{expEndDate}
+            </if>
+            <if test="appointmentId != null and appointmentId != ''">
+                and APPOINTMENT_ID = #{appointmentId}
+            </if>
+            <if test="preWiringStartDate != null">
+                and PRE_WIRING_START_DATE = #{preWiringStartDate}
+            </if>
+            <if test="preWiringEndDate != null">
+                and PRE_WIRING_END_DATE = #{preWiringEndDate}
+            </if>
+            <if test="preSiteCheckStartDate != null">
+                and PRE_SITE_CHECK_START_DATE = #{preSiteCheckStartDate}
+            </if>
+            <if test="preSiteCheckEndDate != null">
+                and PRE_SITE_CHECK_END_DATE = #{preSiteCheckEndDate}
+            </if>
+            <if test="groupId != null and groupId != ''">
+                and GROUP_ID = #{groupId}
+            </if>
+            <if test="familyId != null and familyId != ''">
+                and FAMILY_ID = #{familyId}
+            </if>
+            <if test="newGroupId != null and newGroupId != ''">
+                and NEW_GROUP_ID = #{newGroupId}
+            </if>
+            <if test="newIdentityId != null and newIdentityId != ''">
+                and NEW_IDENTITY_ID = #{newIdentityId}
+            </if>
+            <if test="createdDate != null">
+                and CREATED_DATE = #{createdDate}
+            </if>
+            <if test="logId != null">
+                and LOG_ID = #{logId}
+            </if>
+            <if test="logDate != null">
+                and LOG_DATE = #{logDate}
+            </if>
+            <if test="newFamilyId != null and newFamilyId != ''">
+                and NEW_FAMILY_ID = #{newFamilyId}
+            </if>
+            <if test="ddiLevel != null and ddiLevel != ''">
+                and DDI_LEVEL = #{ddiLevel}
+            </if>
+            <if test="custId != null">
+                and CUST_ID = #{custId}
+            </if>
+            <if test="portFlag != null and portFlag != ''">
+                and PORT_FLAG = #{portFlag}
+            </if>
+            <if test="nn != null and nn != ''">
+                and NN = #{nn}
+            </if>
+            <if test="rno != null and rno != ''">
+                and RNO = #{rno}
+            </if>
+            <if test="dno != null and dno != ''">
+                and DNO = #{dno}
+            </if>
+            <if test="cni != null and cni != ''">
+                and CNI = #{cni}
+            </if>
+            <if test="cniDate != null">
+                and CNI_DATE = #{cniDate}
+            </if>
+            <if test="chgOverStartTime != null">
+                and CHG_OVER_START_TIME = #{chgOverStartTime}
+            </if>
+            <if test="chgOverEndTime != null">
+                and CHG_OVER_END_TIME = #{chgOverEndTime}
+            </if>
+            <if test="accountNumber != null and accountNumber != ''">
+                and ACCOUNT_NUMBER = #{accountNumber}
+            </if>
+            <if test="refSerialNo != null and refSerialNo != ''">
+                and REF_SERIAL_NO = #{refSerialNo}
+            </if>
+            <if test="bmo != null and bmo != ''">
+                and BMO = #{bmo}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from BES_FFM_ORDER_HIST
+        <where>
+            <if test="fulfillmentId != null">
+                and FULFILLMENT_ID = #{fulfillmentId}
+            </if>
+            <if test="orderId != null">
+                and ORDER_ID = #{orderId}
+            </if>
+            <if test="orderType != null and orderType != ''">
+                and ORDER_TYPE = #{orderType}
+            </if>
+            <if test="status != null and status != ''">
+                and STATUS = #{status}
+            </if>
+            <if test="identityId != null and identityId != ''">
+                and IDENTITY_ID = #{identityId}
+            </if>
+            <if test="lastUpdatedDate != null">
+                and LAST_UPDATED_DATE = #{lastUpdatedDate}
+            </if>
+            <if test="lastUpdatedBy != null and lastUpdatedBy != ''">
+                and LAST_UPDATED_BY = #{lastUpdatedBy}
+            </if>
+            <if test="expStartDate != null">
+                and EXP_START_DATE = #{expStartDate}
+            </if>
+            <if test="expEndDate != null">
+                and EXP_END_DATE = #{expEndDate}
+            </if>
+            <if test="appointmentId != null and appointmentId != ''">
+                and APPOINTMENT_ID = #{appointmentId}
+            </if>
+            <if test="preWiringStartDate != null">
+                and PRE_WIRING_START_DATE = #{preWiringStartDate}
+            </if>
+            <if test="preWiringEndDate != null">
+                and PRE_WIRING_END_DATE = #{preWiringEndDate}
+            </if>
+            <if test="preSiteCheckStartDate != null">
+                and PRE_SITE_CHECK_START_DATE = #{preSiteCheckStartDate}
+            </if>
+            <if test="preSiteCheckEndDate != null">
+                and PRE_SITE_CHECK_END_DATE = #{preSiteCheckEndDate}
+            </if>
+            <if test="groupId != null and groupId != ''">
+                and GROUP_ID = #{groupId}
+            </if>
+            <if test="familyId != null and familyId != ''">
+                and FAMILY_ID = #{familyId}
+            </if>
+            <if test="newGroupId != null and newGroupId != ''">
+                and NEW_GROUP_ID = #{newGroupId}
+            </if>
+            <if test="newIdentityId != null and newIdentityId != ''">
+                and NEW_IDENTITY_ID = #{newIdentityId}
+            </if>
+            <if test="createdDate != null">
+                and CREATED_DATE = #{createdDate}
+            </if>
+            <if test="logId != null">
+                and LOG_ID = #{logId}
+            </if>
+            <if test="logDate != null">
+                and LOG_DATE = #{logDate}
+            </if>
+            <if test="newFamilyId != null and newFamilyId != ''">
+                and NEW_FAMILY_ID = #{newFamilyId}
+            </if>
+            <if test="ddiLevel != null and ddiLevel != ''">
+                and DDI_LEVEL = #{ddiLevel}
+            </if>
+            <if test="custId != null">
+                and CUST_ID = #{custId}
+            </if>
+            <if test="portFlag != null and portFlag != ''">
+                and PORT_FLAG = #{portFlag}
+            </if>
+            <if test="nn != null and nn != ''">
+                and NN = #{nn}
+            </if>
+            <if test="rno != null and rno != ''">
+                and RNO = #{rno}
+            </if>
+            <if test="dno != null and dno != ''">
+                and DNO = #{dno}
+            </if>
+            <if test="cni != null and cni != ''">
+                and CNI = #{cni}
+            </if>
+            <if test="cniDate != null">
+                and CNI_DATE = #{cniDate}
+            </if>
+            <if test="chgOverStartTime != null">
+                and CHG_OVER_START_TIME = #{chgOverStartTime}
+            </if>
+            <if test="chgOverEndTime != null">
+                and CHG_OVER_END_TIME = #{chgOverEndTime}
+            </if>
+            <if test="accountNumber != null and accountNumber != ''">
+                and ACCOUNT_NUMBER = #{accountNumber}
+            </if>
+            <if test="refSerialNo != null and refSerialNo != ''">
+                and REF_SERIAL_NO = #{refSerialNo}
+            </if>
+            <if test="bmo != null and bmo != ''">
+                and BMO = #{bmo}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="fulfillmentId" useGeneratedKeys="true">
+        insert into BES_FFM_ORDER_HIST(ORDER_ID, ORDER_TYPE, STATUS, IDENTITY_ID, LAST_UPDATED_DATE, LAST_UPDATED_BY, EXP_START_DATE, EXP_END_DATE, APPOINTMENT_ID, PRE_WIRING_START_DATE, PRE_WIRING_END_DATE, PRE_SITE_CHECK_START_DATE, PRE_SITE_CHECK_END_DATE, GROUP_ID, FAMILY_ID, NEW_GROUP_ID, NEW_IDENTITY_ID, CREATED_DATE, LOG_DATE, NEW_FAMILY_ID, DDI_LEVEL, CUST_ID, PORT_FLAG, NN, RNO, DNO, CNI, CNI_DATE, CHG_OVER_START_TIME, CHG_OVER_END_TIME, ACCOUNT_NUMBER, REF_SERIAL_NO, BMO)
+        values (#{orderId}, #{orderType}, #{status}, #{identityId}, #{lastUpdatedDate}, #{lastUpdatedBy}, #{expStartDate}, #{expEndDate}, #{appointmentId}, #{preWiringStartDate}, #{preWiringEndDate}, #{preSiteCheckStartDate}, #{preSiteCheckEndDate}, #{groupId}, #{familyId}, #{newGroupId}, #{newIdentityId}, #{createdDate}, #{logDate}, #{newFamilyId}, #{ddiLevel}, #{custId}, #{portFlag}, #{nn}, #{rno}, #{dno}, #{cni}, #{cniDate}, #{chgOverStartTime}, #{chgOverEndTime}, #{accountNumber}, #{refSerialNo}, #{bmo})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="fulfillmentId" useGeneratedKeys="true">
+        insert into BES_FFM_ORDER_HIST(ORDER_ID, ORDER_TYPE, STATUS, IDENTITY_ID, LAST_UPDATED_DATE, LAST_UPDATED_BY, EXP_START_DATE, EXP_END_DATE, APPOINTMENT_ID, PRE_WIRING_START_DATE, PRE_WIRING_END_DATE, PRE_SITE_CHECK_START_DATE, PRE_SITE_CHECK_END_DATE, GROUP_ID, FAMILY_ID, NEW_GROUP_ID, NEW_IDENTITY_ID, CREATED_DATE, LOG_DATE, NEW_FAMILY_ID, DDI_LEVEL, CUST_ID, PORT_FLAG, NN, RNO, DNO, CNI, CNI_DATE, CHG_OVER_START_TIME, CHG_OVER_END_TIME, ACCOUNT_NUMBER, REF_SERIAL_NO, BMO)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.orderId}, #{entity.orderType}, #{entity.status}, #{entity.identityId}, #{entity.lastUpdatedDate}, #{entity.lastUpdatedBy}, #{entity.expStartDate}, #{entity.expEndDate}, #{entity.appointmentId}, #{entity.preWiringStartDate}, #{entity.preWiringEndDate}, #{entity.preSiteCheckStartDate}, #{entity.preSiteCheckEndDate}, #{entity.groupId}, #{entity.familyId}, #{entity.newGroupId}, #{entity.newIdentityId}, #{entity.createdDate}, #{entity.logDate}, #{entity.newFamilyId}, #{entity.ddiLevel}, #{entity.custId}, #{entity.portFlag}, #{entity.nn}, #{entity.rno}, #{entity.dno}, #{entity.cni}, #{entity.cniDate}, #{entity.chgOverStartTime}, #{entity.chgOverEndTime}, #{entity.accountNumber}, #{entity.refSerialNo}, #{entity.bmo})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="fulfillmentId" useGeneratedKeys="true">
+        insert into BES_FFM_ORDER_HIST(ORDER_ID, ORDER_TYPE, STATUS, IDENTITY_ID, LAST_UPDATED_DATE, LAST_UPDATED_BY, EXP_START_DATE, EXP_END_DATE, APPOINTMENT_ID, PRE_WIRING_START_DATE, PRE_WIRING_END_DATE, PRE_SITE_CHECK_START_DATE, PRE_SITE_CHECK_END_DATE, GROUP_ID, FAMILY_ID, NEW_GROUP_ID, NEW_IDENTITY_ID, CREATED_DATE, LOG_DATE, NEW_FAMILY_ID, DDI_LEVEL, CUST_ID, PORT_FLAG, NN, RNO, DNO, CNI, CNI_DATE, CHG_OVER_START_TIME, CHG_OVER_END_TIME, ACCOUNT_NUMBER, REF_SERIAL_NO, BMO)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.orderId}, #{entity.orderType}, #{entity.status}, #{entity.identityId}, #{entity.lastUpdatedDate}, #{entity.lastUpdatedBy}, #{entity.expStartDate}, #{entity.expEndDate}, #{entity.appointmentId}, #{entity.preWiringStartDate}, #{entity.preWiringEndDate}, #{entity.preSiteCheckStartDate}, #{entity.preSiteCheckEndDate}, #{entity.groupId}, #{entity.familyId}, #{entity.newGroupId}, #{entity.newIdentityId}, #{entity.createdDate}, #{entity.logDate}, #{entity.newFamilyId}, #{entity.ddiLevel}, #{entity.custId}, #{entity.portFlag}, #{entity.nn}, #{entity.rno}, #{entity.dno}, #{entity.cni}, #{entity.cniDate}, #{entity.chgOverStartTime}, #{entity.chgOverEndTime}, #{entity.accountNumber}, #{entity.refSerialNo}, #{entity.bmo})
+        </foreach>
+        on duplicate key update
+        ORDER_ID = values(ORDER_ID),
+        ORDER_TYPE = values(ORDER_TYPE),
+        STATUS = values(STATUS),
+        IDENTITY_ID = values(IDENTITY_ID),
+        LAST_UPDATED_DATE = values(LAST_UPDATED_DATE),
+        LAST_UPDATED_BY = values(LAST_UPDATED_BY),
+        EXP_START_DATE = values(EXP_START_DATE),
+        EXP_END_DATE = values(EXP_END_DATE),
+        APPOINTMENT_ID = values(APPOINTMENT_ID),
+        PRE_WIRING_START_DATE = values(PRE_WIRING_START_DATE),
+        PRE_WIRING_END_DATE = values(PRE_WIRING_END_DATE),
+        PRE_SITE_CHECK_START_DATE = values(PRE_SITE_CHECK_START_DATE),
+        PRE_SITE_CHECK_END_DATE = values(PRE_SITE_CHECK_END_DATE),
+        GROUP_ID = values(GROUP_ID),
+        FAMILY_ID = values(FAMILY_ID),
+        NEW_GROUP_ID = values(NEW_GROUP_ID),
+        NEW_IDENTITY_ID = values(NEW_IDENTITY_ID),
+        CREATED_DATE = values(CREATED_DATE),
+        LOG_DATE = values(LOG_DATE),
+        NEW_FAMILY_ID = values(NEW_FAMILY_ID),
+        DDI_LEVEL = values(DDI_LEVEL),
+        CUST_ID = values(CUST_ID),
+        PORT_FLAG = values(PORT_FLAG),
+        NN = values(NN),
+        RNO = values(RNO),
+        DNO = values(DNO),
+        CNI = values(CNI),
+        CNI_DATE = values(CNI_DATE),
+        CHG_OVER_START_TIME = values(CHG_OVER_START_TIME),
+        CHG_OVER_END_TIME = values(CHG_OVER_END_TIME),
+        ACCOUNT_NUMBER = values(ACCOUNT_NUMBER),
+        REF_SERIAL_NO = values(REF_SERIAL_NO),
+        BMO = values(BMO)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update BES_FFM_ORDER_HIST
+        <set>
+            <if test="orderId != null">
+                ORDER_ID = #{orderId},
+            </if>
+            <if test="orderType != null and orderType != ''">
+                ORDER_TYPE = #{orderType},
+            </if>
+            <if test="status != null and status != ''">
+                STATUS = #{status},
+            </if>
+            <if test="identityId != null and identityId != ''">
+                IDENTITY_ID = #{identityId},
+            </if>
+            <if test="lastUpdatedDate != null">
+                LAST_UPDATED_DATE = #{lastUpdatedDate},
+            </if>
+            <if test="lastUpdatedBy != null and lastUpdatedBy != ''">
+                LAST_UPDATED_BY = #{lastUpdatedBy},
+            </if>
+            <if test="expStartDate != null">
+                EXP_START_DATE = #{expStartDate},
+            </if>
+            <if test="expEndDate != null">
+                EXP_END_DATE = #{expEndDate},
+            </if>
+            <if test="appointmentId != null and appointmentId != ''">
+                APPOINTMENT_ID = #{appointmentId},
+            </if>
+            <if test="preWiringStartDate != null">
+                PRE_WIRING_START_DATE = #{preWiringStartDate},
+            </if>
+            <if test="preWiringEndDate != null">
+                PRE_WIRING_END_DATE = #{preWiringEndDate},
+            </if>
+            <if test="preSiteCheckStartDate != null">
+                PRE_SITE_CHECK_START_DATE = #{preSiteCheckStartDate},
+            </if>
+            <if test="preSiteCheckEndDate != null">
+                PRE_SITE_CHECK_END_DATE = #{preSiteCheckEndDate},
+            </if>
+            <if test="groupId != null and groupId != ''">
+                GROUP_ID = #{groupId},
+            </if>
+            <if test="familyId != null and familyId != ''">
+                FAMILY_ID = #{familyId},
+            </if>
+            <if test="newGroupId != null and newGroupId != ''">
+                NEW_GROUP_ID = #{newGroupId},
+            </if>
+            <if test="newIdentityId != null and newIdentityId != ''">
+                NEW_IDENTITY_ID = #{newIdentityId},
+            </if>
+            <if test="createdDate != null">
+                CREATED_DATE = #{createdDate},
+            </if>
+            <if test="logDate != null">
+                LOG_DATE = #{logDate},
+            </if>
+            <if test="newFamilyId != null and newFamilyId != ''">
+                NEW_FAMILY_ID = #{newFamilyId},
+            </if>
+            <if test="ddiLevel != null and ddiLevel != ''">
+                DDI_LEVEL = #{ddiLevel},
+            </if>
+            <if test="custId != null">
+                CUST_ID = #{custId},
+            </if>
+            <if test="portFlag != null and portFlag != ''">
+                PORT_FLAG = #{portFlag},
+            </if>
+            <if test="nn != null and nn != ''">
+                NN = #{nn},
+            </if>
+            <if test="rno != null and rno != ''">
+                RNO = #{rno},
+            </if>
+            <if test="dno != null and dno != ''">
+                DNO = #{dno},
+            </if>
+            <if test="cni != null and cni != ''">
+                CNI = #{cni},
+            </if>
+            <if test="cniDate != null">
+                CNI_DATE = #{cniDate},
+            </if>
+            <if test="chgOverStartTime != null">
+                CHG_OVER_START_TIME = #{chgOverStartTime},
+            </if>
+            <if test="chgOverEndTime != null">
+                CHG_OVER_END_TIME = #{chgOverEndTime},
+            </if>
+            <if test="accountNumber != null and accountNumber != ''">
+                ACCOUNT_NUMBER = #{accountNumber},
+            </if>
+            <if test="refSerialNo != null and refSerialNo != ''">
+                REF_SERIAL_NO = #{refSerialNo},
+            </if>
+            <if test="bmo != null and bmo != ''">
+                BMO = #{bmo},
+            </if>
+        </set>
+        where FULFILLMENT_ID = #{fulfillmentId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from BES_FFM_ORDER_HIST where FULFILLMENT_ID = #{fulfillmentId}
+    </delete>
+
+</mapper>
+
